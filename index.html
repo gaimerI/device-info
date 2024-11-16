@@ -13,7 +13,7 @@
     </div>
 
     <button onclick="getLocation()">Geolocation</button>
-      <p id="geolocation"></p>
+      <p class="button-input" id="geolocation"></p>
 
     <div class="disclaimer">
         <p><strong>Disclaimer:</strong> This tool displays information about your device collected using JavaScript APIs available in your browser. No data is sent to any server. Ensure you are comfortable before sharing such details with anyone.</p>
@@ -75,10 +75,12 @@
 
             // Show latitude, longitude, and accuracy
             document.getElementById("geolocation").innerHTML = `
-                <p><strong>Latitude:</strong> ${latitude.toFixed(5)}</p>
-                <p><strong>Longitude:</strong> ${longitude.toFixed(5)}</p>
-                <p><strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters</p>
+            <ul>
+                <li><strong>Latitude:</strong> ${latitude.toFixed(5)}</p>
+                <li><strong>Longitude:</strong> ${longitude.toFixed(5)}</p>
+                <li><strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters</p>
                 <a id="map-link" href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank">View on Google Maps</a>
+            </ul>
 
             `;
 
