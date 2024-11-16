@@ -12,7 +12,7 @@
         <p>Loading device information...</p>
     </div>
 
-    <button class="button-input" onclick="getLocation()">Geolocation</button>
+    <button id="delete" class="button-input" onclick="getLocation()">Geolocation</button>
       <p id="geolocation"></p>
 
     <div class="disclaimer">
@@ -54,7 +54,9 @@
         window.onload = getDeviceInfo;
 
 
-             function getLocation() {
+        function getLocation() {
+                 const delElement = document.getElementById("delete");
+                 delElement.remove();
          const locationDiv = document.getElementById("geolocation");
          // Check if Geolocation is available
          if (navigator.geolocation) {
