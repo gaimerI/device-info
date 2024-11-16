@@ -75,12 +75,12 @@
 
             // Show latitude, longitude, and accuracy
             document.getElementById("geolocation").innerHTML = `
-            <ul>
-                <li><strong>Latitude:</strong> ${latitude.toFixed(5)}</p>
-                <li><strong>Longitude:</strong> ${longitude.toFixed(5)}</p>
-                <li><strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters</p>
-                <a id="map-link" href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank">View on Google Maps</a>
-            </ul>
+              <ul>
+                <li><strong>Latitude:</strong> ${latitude.toFixed(5)}</li>
+                <li><strong>Longitude:</strong> ${longitude.toFixed(5)}</li>
+                <li><strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters</li>
+                <li><a id="map-link" href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank">View on Google Maps</a></li>
+              </ul>
 
             `;
 
