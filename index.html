@@ -32,6 +32,7 @@
                 cookiesEnabled: navigator.cookieEnabled ? "Enabled" : "Disabled",
                 javaEnabled: navigator.javaEnabled() ? "Enabled" : "Disabled",
                 memory: navigator.deviceMemory,
+                battery: navigator.getBattery,
             };
 
             // Render the information to the page
@@ -47,7 +48,7 @@
                     <li><strong>Color Depth:</strong> ${deviceInfo.colorDepth}</li>
                     <li><strong>Cookies Enabled:</strong> ${deviceInfo.cookiesEnabled}</li>
                     <li><strong>Java Enabled:</strong> ${deviceInfo.javaEnabled}</li>
-                    <li><strong>Approx. memory:</strong> ${deviceInfo.memory} "GB"</li>
+                    <li><strong>Approx. memory:</strong> ${deviceInfo.memory} GB</li>
                 </ul>
             `;
         }
