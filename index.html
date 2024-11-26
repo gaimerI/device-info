@@ -20,6 +20,7 @@
     </div>
 
     <script>
+        navigator.getBattery()
         // Function to gather device information
         function getDeviceInfo() {
             const deviceInfo = {
@@ -32,7 +33,10 @@
                 cookiesEnabled: navigator.cookieEnabled ? "Enabled" : "Disabled",
                 javaEnabled: navigator.javaEnabled() ? "Enabled" : "Disabled",
                 memory: navigator.deviceMemory,
-                battery: navigator.getBattery,
+                charging: battery.charging,
+                chargingTime: battery.chargingTime,
+                dischargingTime: battery.dischargingTime,
+                batteryLevel: battery.level,
             };
 
             // Render the information to the page
@@ -49,7 +53,10 @@
                     <li><strong>Cookies Enabled:</strong> ${deviceInfo.cookiesEnabled}</li>
                     <li><strong>Java Enabled:</strong> ${deviceInfo.javaEnabled}</li>
                     <li><strong>Approx. memory:</strong> ${deviceInfo.memory} GB</li>
-                    <li><strong>Battery:</strong> ${deviceInfo.battery}</li>
+                    <li><strong>Is charging:</strong> ${deviceInfo.charging}</li>
+                    <li><strong>Approx. time until full:</strong> ${deviceInfo.chargingTime}</li>
+                    <li><strong>Approx. time until empty:</strong> ${deviceInfo.dischargingTime}</li>
+                    <li><strong>Battery Level:</strong> ${deviceInfo.batteryLevel}</li>
                 </ul>
             `;
         }
