@@ -20,7 +20,10 @@
     </div>
 
     <script>
-        navigator.getBattery()
+        navigator.getBattery().then(function(battery) {
+    // Use battery information inside the `then` block or save it for use
+});
+
         // Function to gather device information
         async function getDeviceInfo() {
     const battery = await navigator.getBattery();
