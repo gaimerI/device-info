@@ -22,44 +22,46 @@
     <script>
         navigator.getBattery()
         // Function to gather device information
-        function getDeviceInfo() {
-            const deviceInfo = {
-                browser: navigator.userAgent,
-                platform: navigator.platform,
-                language: navigator.language,
-                onlineStatus: navigator.onLine ? "Online" : "Offline",
-                screenResolution: `${screen.width} x ${screen.height}`,
-                colorDepth: `${screen.colorDepth}-bit`,
-                cookiesEnabled: navigator.cookieEnabled ? "Enabled" : "Disabled",
-                javaEnabled: navigator.javaEnabled() ? "Enabled" : "Disabled",
-                memory: navigator.deviceMemory,
-                charging: battery.charging,
-                chargingTime: battery.chargingTime,
-                dischargingTime: battery.dischargingTime,
-                batteryLevel: battery.level,
-            };
+        async function getDeviceInfo() {
+    const battery = await navigator.getBattery();
 
-            // Render the information to the page
-            const infoDiv = document.getElementById('deviceInfo');
-            infoDiv.innerHTML = `
-                <h3>Detected Device Information:</h3>
-                <ul>
-                    <li><strong>Browser/User Agent:</strong> ${deviceInfo.browser}</li>
-                    <li><strong>Platform:</strong> ${deviceInfo.platform}</li>
-                    <li><strong>Language:</strong> ${deviceInfo.language}</li>
-                    <li><strong>Online Status:</strong> ${deviceInfo.onlineStatus}</li>
-                    <li><strong>Screen Resolution:</strong> ${deviceInfo.screenResolution}</li>
-                    <li><strong>Color Depth:</strong> ${deviceInfo.colorDepth}</li>
-                    <li><strong>Cookies Enabled:</strong> ${deviceInfo.cookiesEnabled}</li>
-                    <li><strong>Java Enabled:</strong> ${deviceInfo.javaEnabled}</li>
-                    <li><strong>Approx. memory:</strong> ${deviceInfo.memory} GB</li>
-                    <li><strong>Is charging:</strong> ${deviceInfo.charging}</li>
-                    <li><strong>Approx. time until full:</strong> ${deviceInfo.chargingTime}</li>
-                    <li><strong>Approx. time until empty:</strong> ${deviceInfo.dischargingTime}</li>
-                    <li><strong>Battery Level:</strong> ${deviceInfo.batteryLevel}</li>
-                </ul>
-            `;
-        }
+    const deviceInfo = {
+        browser: navigator.userAgent,
+        platform: navigator.platform,
+        language: navigator.language,
+        onlineStatus: navigator.onLine ? "Online" : "Offline",
+        screenResolution: `${screen.width} x ${screen.height}`,
+        colorDepth: `${screen.colorDepth}-bit`,
+        cookiesEnabled: navigator.cookieEnabled ? "Enabled" : "Disabled",
+        javaEnabled: navigator.javaEnabled() ? "Enabled" : "Disabled",
+        memory: navigator.deviceMemory,
+        charging: battery.charging,
+        chargingTime: battery.chargingTime,
+        dischargingTime: battery.dischargingTime,
+        batteryLevel: battery.level,
+    };
+
+    const infoDiv = document.getElementById('deviceInfo');
+    infoDiv.innerHTML = `
+        <h3>Detected Device Information:</h3>
+        <ul>
+            <li><strong>Browser/User Agent:</strong> ${deviceInfo.browser}</li>
+            <li><strong>Platform:</strong> ${deviceInfo.platform}</li>
+            <li><strong>Language:</strong> ${deviceInfo.language}</li>
+            <li><strong>Online Status:</strong> ${deviceInfo.onlineStatus}</li>
+            <li><strong>Screen Resolution:</strong> ${deviceInfo.screenResolution}</li>
+            <li><strong>Color Depth:</strong> ${deviceInfo.colorDepth}</li>
+            <li><strong>Cookies Enabled:</strong> ${deviceInfo.cookiesEnabled}</li>
+            <li><strong>Java Enabled:</strong> ${deviceInfo.javaEnabled}</li>
+            <li><strong>Approx. memory:</strong> ${deviceInfo.memory} GB</li>
+            <li><strong>Is charging:</strong> ${deviceInfo.charging}</li>
+            <li><strong>Approx. time until full:</strong> ${deviceInfo.chargingTime}</li>
+            <li><strong>Approx. time until empty:</strong> ${deviceInfo.dischargingTime}</li>
+            <li><strong>Battery Level:</strong> ${deviceInfo.batteryLevel}</li>
+        </ul>
+    `;
+}
+
 
         // Call the function to get device info on page load
         window.onload = getDeviceInfo;
