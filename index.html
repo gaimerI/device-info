@@ -16,6 +16,16 @@
         <li id="location-host"></li>
         <li id="location-path"></li>
         <li id="location-protocol"></li>
+        <li id="likes-cookies"></li>
+        <li id="app-name"></li>
+        <li id="app-codename"></li>
+        <li id="browser-product"></li>
+        <li id="app-version"></li>
+        <li id="app-agent"></li>
+        <li id="app-platform"></li>
+        <li id="app-language"></li>
+        <li id="is-online"></li>
+        <li id="likes-java"></li>
     </ul>
 
     <script>
@@ -26,6 +36,16 @@
         document.getElementById("location-host").innerHTML = "URL host: " + window.location.hostname;
         document.getElementById("location-path").innerHTML = "URL path: " + window.location.pathname;
         document.getElementById("location-protocol").innerHTML = "URL protocol: " + window.location.protocol;
+        document.getElementById("likes-cookies").innerHTML = "Cookies enabled: " + navigator.cookieEnabled;
+        document.getElementById("app-name").innerHTML = "Application name: " + navigator.appName + "  (Most browsers report Netscape)";
+        document.getElementById("app-codename").innerHTML = "Application codename: " + navigator.appCodeName + "  (Most browsers report Mozilla)";
+        document.getElementById("browser-product").innerHTML = "Application product: " + navigator.product + "  (Most browsers report Gecko)";
+        document.getElementById("app-version").innerHTML = "Application version: " + navigator.appVersion;
+        document.getElementById("app-agent").innerHTML = "Application agent: " + navigator.userAgent;
+        document.getElementById("app-platform").innerHTML = "Application platform (OS): " + navigator.platform;
+        document.getElementById("app-language").innerHTML = "Preferred language: " + navigator.language;
+        document.getElementById("is-online").innerHTML = "Online: " + navigator.onLine;
+        document.getElementById("likes-java").innerHTML = "Java enabled: " + navigator.javaEnabled;
 
     </script>
 </body>
