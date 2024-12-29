@@ -8,106 +8,16 @@
 </head>
 <body>
     <h1>Device Information</h1>
-    <div id="deviceInfo" class="info">
-        <p>Loading device information...</p>
-    </div>
-
-    <button id="delete" class="button-input" onclick="getLocation()">Geolocation</button>
-      <p id="geolocation"></p>
-
-    <div class="disclaimer">
-        <p><strong>Disclaimer:</strong> This tool displays information about your device collected using JavaScript APIs available in your browser. No data is sent to any server. Ensure you are comfortable before sharing such details with anyone.</p>
-    </div>
+    <ul>
+        <li id="screen-width"></li>
+        <li id="screen-height"></li>
+        <li id="colour-depth"></li>
+    </ul>
 
     <script>
-        // Function to gather device information
-        function getDeviceInfo() {
-            const deviceInfo = {
-                browser: navigator.userAgent,
-                platform: navigator.platform,
-                language: navigator.language,
-                onlineStatus: navigator.onLine ? "Online" : "Offline",
-                screenResolution: `${screen.width} x ${screen.height}`,
-                colorDepth: `${screen.colorDepth}-bit`,
-                cookiesEnabled: navigator.cookieEnabled ? "Enabled" : "Disabled",
-                javaEnabled: navigator.javaEnabled() ? "Enabled" : "Disabled",
-                memory: navigator.deviceMemory,
-                battery: navigator.getBattery,
-            };
-
-            // Render the information to the page
-            const infoDiv = document.getElementById('deviceInfo');
-            infoDiv.innerHTML = `
-                <h3>Detected Device Information:</h3>
-                <ul>
-                    <li><strong>Browser/User Agent:</strong> ${deviceInfo.browser}</li>
-                    <li><strong>Platform:</strong> ${deviceInfo.platform}</li>
-                    <li><strong>Language:</strong> ${deviceInfo.language}</li>
-                    <li><strong>Online Status:</strong> ${deviceInfo.onlineStatus}</li>
-                    <li><strong>Screen Resolution:</strong> ${deviceInfo.screenResolution}</li>
-                    <li><strong>Color Depth:</strong> ${deviceInfo.colorDepth}</li>
-                    <li><strong>Cookies Enabled:</strong> ${deviceInfo.cookiesEnabled}</li>
-                    <li><strong>Java Enabled:</strong> ${deviceInfo.javaEnabled}</li>
-                    <li><strong>Approx. memory:</strong> ${deviceInfo.memory} GB</li>
-                </ul>
-            `;
-        }
-
-        // Call the function to get device info on page load
-        window.onload = getDeviceInfo;
-
-
-        function getLocation() {
-                 const delElement = document.getElementById("delete");
-                 delElement.remove();
-         const locationDiv = document.getElementById("geolocation");
-         // Check if Geolocation is available
-         if (navigator.geolocation) {
-             locationDiv.innerHTML = "Getting your location...";
-             // Use Geolocation API
-             navigator.geolocation.getCurrentPosition(showPosition, showError);
-         } else {
-             locationDiv.innerHTML = "Geolocation is not supported by this browser.";
-         }
-     }
-
-     // Display the user's location
-     function showPosition(position) {
-         const latitude = position.coords.latitude;
-         const longitude = position.coords.longitude;
-         const accuracy = position.coords.accuracy;
-
-         // Show latitude, longitude, and accuracy
-         document.getElementById("geolocation").innerHTML = `
-             <ul>
-                 <li><strong>Latitude:</strong> ${latitude.toFixed(5)}</li>
-                 <li><strong>Longitude:</strong> ${longitude.toFixed(5)}</li>
-                 <li><strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters</li>
-             </ul>
-             <a id="map-link" href="https://www.google.com/maps?q=${latitude},${longitude}" target="_blank">View on Google Maps</a>
-         `;
-     }
-
-     // Handle errors
-     function showError(error) {
-         const locationDiv = document.getElementById("geolocation");
-
-         switch (error.code) {
-             case error.PERMISSION_DENIED:
-                 locationDiv.innerHTML = "User denied the request for Geolocation.";
-                 break;
-             case error.POSITION_UNAVAILABLE:
-                 locationDiv.innerHTML = "Location information is unavailable.";
-                 break;
-             case error.TIMEOUT:
-                 locationDiv.innerHTML = "The request to get user location timed out.";
-                 break;
-             case error.UNKNOWN_ERROR:
-                 locationDiv.innerHTML = "An unknown error occurred.";
-                 break;
-         }
-     }
-
+        document.getElementById("screen-width").innerHTML = "Browser window width: " + window.innerWidth + " px";
+        document.getElementById("screen-height").innerHTML = "Browser window height: " + window.innerHeight + " px";
+        document.getElementById("colour-depth").innerHTML = "Device colour depth: " + screen.colorDepth + " bits";
     </script>
 </body>
 </html>
