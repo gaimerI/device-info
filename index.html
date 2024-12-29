@@ -27,11 +27,15 @@
         <li id="is-online"></li>
         <li id="likes-java"></li>
         <li id="history-length"></li>
-        <li id="likes-geolocation">
+        <li id="likes-geolocation"></li>
         <li id="geo-latitude"></li>
         <li id="geo-longitude"></li>
         <li id="geo-accuracy"></li>
+        <li id="geo-altitude"></li>
+        <li id="geo-speed"></li>
     </ul>
+    <button id="start-tracking">Start Tracking Location</button>
+    <button id="stop-tracking">Stop Tracking Location</button>
 
     <script>
         document.getElementById("screen-width").innerHTML = "Browser window width: " + window.innerWidth + " px";
@@ -52,19 +56,65 @@
         document.getElementById("is-online").innerHTML = "Online: " + navigator.onLine;
         document.getElementById("likes-java").innerHTML = "Java enabled: " + navigator.javaEnabled;
         document.getElementById("history-length").innerHTML = "Browsing history length: " + history.length;
-        document.getElementById("likes-geolocation").innerHTML = "Geolocation enabled: " + navigator.geolocation;
-        // Add geolocation
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                document.getElementById("geo-latitude").innerHTML = "Latitude: " + position.coords.latitude;
-                document.getElementById("geo-longitude").innerHTML = "Longitude: " + position.coords.longitude;
-                document.getElementById("geo-accuracy").innerHTML = "Accuracy: " + position.coords.accuracy;
+        document.getElementById("likes-geolocation").innerHTML = "Geolocation enabled: " + (navigator.geolocation ? "Yes" : "No");
 
-            }, function(error) {
-                document.getElementById("geo-latitude").innerHTML = "Latitude: Not available (Permission denied or error)";
-                document.getElementById("geo-longitude").innerHTML = "Longitude: Not available (Permission denied or error)";
-                document.getElementById("geo-accuracy").innerHTML = "Accuracy: Not available (Permission denied or error";
-            });
+        let watchId = null;
+
+        // Function to display current position
+        function displayPosition(position) {
+            document.getElementById("geo-latitude").innerHTML = "Latitude: " + position.coords.latitude;
+            document.getElementById("geo-longitude").innerHTML = "Longitude: " + position.coords.longitude;
+            document.getElementById("geo-accuracy").innerHTML = "Accuracy: " + position.coords.accuracy + " meters";
+            document.getElementById("geo-altitude").innerHTML = "Altitude: " + (position.coords.altitude || "Not available");
+            document.getElementById("geo-speed").innerHTML = "Speed: " + (position.coords.speed || "Not available");
+        }
+
+        // Handle errors for geolocation
+        function handleError(error) {
+            let errorMsg = "Error: ";
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMsg += "User denied the request for Geolocation.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMsg += "Location information is unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMsg += "The request to get user location timed out.";
+                    break;
+                default:
+                    errorMsg += "An unknown error occurred.";
+                    break;
+            }
+            alert(errorMsg);
+        }
+
+        // Start tracking
+        document.getElementById("start-tracking").addEventListener("click", function () {
+            if (navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(displayPosition, handleError, {
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        });
+
+        // Stop tracking
+        document.getElementById("stop-tracking").addEventListener("click", function () {
+            if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+                watchId = null;
+                alert("Location tracking stopped.");
+            } else {
+                alert("No active tracking to stop.");
+            }
+        });
+
+        // Initial geolocation data
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(displayPosition, handleError);
         } else {
             document.getElementById("geo-latitude").innerHTML = "Latitude: Not supported by this browser";
             document.getElementById("geo-longitude").innerHTML = "Longitude: Not supported by this browser";
