@@ -26,6 +26,7 @@
         <li id="app-language"></li>
         <li id="is-online"></li>
         <li id="likes-java"></li>
+        <li id="history-length"></li>
     </ul>
 
     <script>
@@ -46,7 +47,7 @@
         document.getElementById("app-language").innerHTML = "Preferred language: " + navigator.language;
         document.getElementById("is-online").innerHTML = "Online: " + navigator.onLine;
         document.getElementById("likes-java").innerHTML = "Java enabled: " + navigator.javaEnabled;
-
+        document.getElementById("history-length").innerHTML = "Browsing history length: " + history.length;
     </script>
 </body>
 </html>
