@@ -34,6 +34,13 @@
         <li id="geo-altitude"></li>
         <li id="geo-speed"></li>
         <li id="device-memory"></li>
+        <li id="screen-width-total"></li>
+        <li id="screen-height-total"></li>
+        <li id="connection-type"></li>
+        <li id="battery-status"></li>
+        <li id="touch-support"></li>
+        <li id="dark-mode"></li>
+        <li id="timezone"></li>
     </ul>
     <button id="start-tracking">Start Tracking Location</button>
     <button id="stop-tracking">Stop Tracking Location</button>
@@ -122,6 +129,34 @@
             document.getElementById("geo-longitude").innerHTML = "Longitude: Not supported by this browser";
             document.getElementById("geo-accuracy").innerHTML = "Accuracy: Not supported by this browser";
         }
+
+        // Screen details
+document.getElementById("screen-width-total").innerHTML = `Total Screen Width: ${screen.width} px`;
+document.getElementById("screen-height-total").innerHTML = `Total Screen Height: ${screen.height} px`;
+
+// Connection type
+if (navigator.connection) {
+    document.getElementById("connection-type").innerHTML = `Connection Type: ${navigator.connection.effectiveType}`;
+}
+
+// Battery status
+if (navigator.getBattery) {
+    navigator.getBattery().then(function (battery) {
+        document.getElementById("battery-status").innerHTML = `Battery Level: ${(battery.level * 100).toFixed(0)}%`;
+    });
+}
+
+// Touchscreen support
+const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+document.getElementById("touch-support").innerHTML = `Touchscreen Support: ${hasTouch}`;
+
+// Time Zone
+document.getElementById("timezone").innerHTML = `Time Zone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}`;
+
+// Dark mode preference
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+document.getElementById("dark-mode").innerHTML = `Prefers Dark Mode: ${prefersDark}`;
+
     </script>
 </body>
 </html>
