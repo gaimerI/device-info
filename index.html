@@ -12,12 +12,21 @@
         <li id="screen-width"></li>
         <li id="screen-height"></li>
         <li id="colour-depth"></li>
+        <li id="location-href"></li>
+        <li id="location-host"></li>
+        <li id="location-path"></li>
+        <li id="location-protocol"></li>
     </ul>
 
     <script>
         document.getElementById("screen-width").innerHTML = "Browser window width: " + window.innerWidth + " px";
         document.getElementById("screen-height").innerHTML = "Browser window height: " + window.innerHeight + " px";
         document.getElementById("colour-depth").innerHTML = "Device colour depth: " + screen.colorDepth + " bits";
+        document.getElementById("location-href").innerHTML = "Current URL: " + window.location.href;
+        document.getElementById("location-host").innerHTML = "URL host: " + window.location.hostname;
+        document.getElementById("location-path").innerHTML = "URL path: " + window.location.pathname;
+        document.getElementById("location-protocol").innerHTML = "URL protocol: " + window.location.protocol;
+
     </script>
 </body>
 </html>
