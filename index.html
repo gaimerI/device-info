@@ -52,7 +52,7 @@
         document.getElementById("is-online").innerHTML = "Online: " + navigator.onLine;
         document.getElementById("likes-java").innerHTML = "Java enabled: " + navigator.javaEnabled;
         document.getElementById("history-length").innerHTML = "Browsing history length: " + history.length;
-        document.getElementById("likes-cookies").innerHTML = "Geolocation enabled: " + navigator.geolocation;
+        document.getElementById("likes-geolocation").innerHTML = "Geolocation enabled: " + navigator.geolocation;
         // Add geolocation
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
